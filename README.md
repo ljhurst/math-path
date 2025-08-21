@@ -3,10 +3,10 @@
 This is a demo repo showcasing an autonomous agent.
 The agent takes a start numnber and an end number and then works to make the start number equal the end number by:
 
- - Adding one
- - Subtracting one
- - Doubling
- - Halving
+- Adding one
+- Subtracting one
+- Doubling
+- Halving
 
 This simple example shows how the agent can plan out its own route from start to finish, keep track of progress, and know when to stop.
 
@@ -62,7 +62,7 @@ One goal of this demo was to build an agent without frameworks to be able to dem
 1. Get a user request (start 1, end 2)
 2. Start a `Thread` with the user request as the first `Event`
 3. Loop until the task is finished or we run out of turns
-   
+
     1. Serialize the entire `Thead` into a prompt
     2. Have the agent decide the next step
     3. Add the agent decision to the `Thread`
