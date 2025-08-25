@@ -89,5 +89,5 @@ DIVIDE_BY_TWO = ChatCompletionToolParam(
 )
 
 
-def divide_by_two(number: int) -> int:
+def divide_by_two(number: int) -> float:
     return number / 2

@@ -16,4 +16,5 @@ build-backend = "setuptools.build_meta"
 [dependency-groups]
 dev = [
     "ruff>=0.12.9",
+    "ty>=0.0.1a19",
 ]
