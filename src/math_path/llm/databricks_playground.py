@@ -89,7 +89,7 @@ def _handle_delta_tool_calls(
 
     index = tool_call.index
 
-    if len(tool_calls_so_far) < index:
+    if len(tool_calls_so_far) == index:
         updated_id = tool_call.id
         updated_name = tool_call.function.name
         updated_arguments = tool_call.function.arguments
@@ -98,7 +98,7 @@ def _handle_delta_tool_calls(
             _create_tool_call(updated_id, updated_name, updated_arguments)
         )
     else:
-        existing_tool_call = tool_calls_so_far[index - 1]
+        existing_tool_call = tool_calls_so_far[index]
 
         updated_id = existing_tool_call.id
         updated_name = existing_tool_call.function.name
