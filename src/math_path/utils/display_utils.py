@@ -1,4 +1,4 @@
-from math_path.domain import Event, Role, StepAction
+from math_path.domain import Action, Event, Role
 
 
 def print_event(event: Event) -> None:
@@ -12,7 +12,7 @@ def print_role(role: Role) -> None:
     print(f"Role: {role.value}")
 
 
-def print_action(action: StepAction) -> None:
+def print_action(action: Action) -> None:
     print(f"Action: {action.value}")
 
 

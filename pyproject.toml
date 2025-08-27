@@ -1,6 +1,6 @@
 [project]
 name = "math_path"
-version = "0.1.1"
+version = "0.1.2"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
@@ -15,6 +15,18 @@ build-backend = "setuptools.build_meta"
 
 [dependency-groups]
 dev = [
+    "pre-commit>=4.3.0",
     "ruff>=0.12.9",
     "ty>=0.0.1a19",
+]
+
+[tool.ruff.lint]
+extend-select = [
+    "B",
+    "C90",
+    "ERA",
+    "FURB",
+    "I",
+    "N",
+    "UP",
 ]

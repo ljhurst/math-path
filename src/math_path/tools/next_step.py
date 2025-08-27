@@ -1,7 +1,7 @@
 from openai.types.chat import ChatCompletionToolParam
 from openai.types.shared_params import FunctionDefinition
 
-from math_path.domain import StepAction
+from math_path.domain import Action
 
 DONE = ChatCompletionToolParam(
     type="function",
@@ -13,7 +13,7 @@ DONE = ChatCompletionToolParam(
             "properties": {
                 "step": {
                     "type": "string",
-                    "description": f"The next step to execute. Must be '{StepAction.DONE.value}'.",
+                    "description": f"The next step to execute. Must be '{Action.DONE.value}'.",
                 }
             },
             "required": ["step"],
@@ -22,7 +22,7 @@ DONE = ChatCompletionToolParam(
 )
 
 
-def done(step: StepAction) -> None:
+def done(step: Action) -> None:
     raise RuntimeError(
         "This tool is only used for structured output and should not be called"
     )
