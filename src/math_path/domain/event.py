@@ -2,7 +2,7 @@ from enum import Enum
 
 from pydantic import BaseModel
 
-from math_path.domain.step_action import StepAction
+from math_path.domain import Action
 
 
 class Role(Enum):
@@ -13,5 +13,5 @@ class Role(Enum):
 
 class Event(BaseModel):
     role: Role
-    action: StepAction
+    action: Action
     data: str

@@ -44,7 +44,6 @@ def invoke(prompt: str) -> Choice:
     tool_calls_so_far = []
 
     for chunk in stream:
-        # print(chunk)
         if not chunk.choices:
             continue
 
@@ -106,7 +105,7 @@ def _handle_delta_tool_calls(
             existing_tool_call.function.arguments + tool_call.function.arguments
         )
 
-        tool_calls_so_far[index - 1] = _create_tool_call(
+        tool_calls_so_far[index] = _create_tool_call(
             updated_id, updated_name, updated_arguments
         )
 

@@ -4,7 +4,7 @@ import logging
 from openai.types.chat import ChatCompletionMessageFunctionToolCall
 from openai.types.chat.chat_completion import Choice
 
-from math_path.domain import Event, Role, StepAction, Thread
+from math_path.domain import Action, Event, Role, Thread
 from math_path.llm import databricks_playground
 from math_path.prompts import create_prompt
 from math_path.utils import display_utils, tool_utils
@@ -21,7 +21,7 @@ def run(start_number: int, end_number: int) -> Thread:
 
     start_event = Event(
         role=Role.USER,
-        action=StepAction.USER_INPUT,
+        action=Action.USER_INPUT,
         data=f"""
             Use the available tools to turn <start_number> into <end_number>.
 
@@ -40,7 +40,7 @@ def run(start_number: int, end_number: int) -> Thread:
 def _loop_until_done(thread: Thread) -> Thread:
     for _ in range(MAX_AGENT_STEPS):
         display_utils.print_role(Role.ASSISTANT)
-        display_utils.print_action(StepAction.ASSISTANT_RESPONSE)
+        display_utils.print_action(Action.ASSISTANT_RESPONSE)
         display_utils.print_data("")
         choice = _determine_next_step(thread)
         print()
@@ -54,14 +54,14 @@ def _loop_until_done(thread: Thread) -> Thread:
 
         assistant_event = Event(
             role=Role.ASSISTANT,
-            action=StepAction.ASSISTANT_RESPONSE,
+            action=Action.ASSISTANT_RESPONSE,
             data=reasoning,
         )
 
         thread.events.append(assistant_event)
 
         match first_tool_call_name:
-            case StepAction.DONE.value:
+            case Action.DONE.value:
                 next_events = _handle_done_step()
 
                 thread.events += next_events
@@ -88,7 +88,7 @@ def _handle_done_step() -> list[Event]:
     logger.info("Execution done")
     done_event = Event(
         role=Role.ASSISTANT,
-        action=StepAction.DONE,
+        action=Action.DONE,
         data="Execution completed successfully.",
     )
 
@@ -111,7 +111,7 @@ def _call_tool(tool_call: ChatCompletionMessageFunctionToolCall) -> list[Event]:
 
     tool_call_event = Event(
         role=Role.TOOL,
-        action=StepAction.TOOL_CALL,
+        action=Action.TOOL_CALL,
         data=f"Calling tool: {tool_name} with arguments: {arguments}",
     )
 
@@ -121,7 +121,7 @@ def _call_tool(tool_call: ChatCompletionMessageFunctionToolCall) -> list[Event]:
 
     tool_result_event = Event(
         role=Role.TOOL,
-        action=StepAction.TOOL_RESULT,
+        action=Action.TOOL_RESULT,
         data=f"{tool_name} result: {tool_response}",
     )
 
