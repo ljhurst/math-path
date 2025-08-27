@@ -20,6 +20,12 @@ Then install dependencies
 uv sync
 ```
 
+And install pre-commit hooks
+
+```bash
+uv run pre-commit install
+```
+
 ## Run
 
 ### Prerequisites
