@@ -1,7 +1,7 @@
 # math-path
 
 This is a demo repo showcasing an autonomous agent.
-The agent takes a start numnber and an end number and then works to make the start number equal the end number by:
+The agent takes a start number and an end number and then works to make the start number equal the end number by:
 
 - Adding one
 - Subtracting one
